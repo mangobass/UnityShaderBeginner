@@ -1,3 +1,8 @@
+//=============================================================================
+// Praun E, Hoppe H, Webb M, et al. Real-time hatching[C]
+// Reference: Proceedings of the 28th annual conference on Computer
+//            graphics and interactive techniques. ACM, 2001: 581.
+//=============================================================================
 Shader "MyShader/Rim/Hatching" {
 	Properties {
 		_Color("Color Tint", Color) = (1,1,1,1)

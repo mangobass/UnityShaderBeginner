@@ -14,7 +14,7 @@
 		Tags { "RenderType"="Opaque" "Queue"="Geometry" }
 
 		Pass {
-			NAME "OUTLINE_CULL_FRONT"
+			NAME "MYOUTLINE"
 			Cull Front
 
 			CGPROGRAM
@@ -38,18 +38,18 @@
 			{
 				v2f o;
 				float4 pos = mul(UNITY_MATRIX_MV, v.vertex);
-				float3 normal = mul(UNITY_MATRIX_IT_MV, v.normal);
+				float3 normal = mul((float3x3)UNITY_MATRIX_IT_MV, v.normal);
 				// 设置法线的z分量
 				normal.z = -0.5;
-				pos += float4(normalize(normal), 0) * _Outline;
+				pos = pos + float4(normalize(normal), 0) * _Outline;
 				o.pos = mul(UNITY_MATRIX_P, pos);
 
 				return o;
 			}
 
-			fixed4 frag(v2f i) : SV_Target
+			float4 frag(v2f i) : SV_Target
 			{
-				return fixed4(_OutlineColor.rgb, 1.0);
+				return float4(_OutlineColor.rgb, 1.0);
 			}
 			ENDCG
 		}

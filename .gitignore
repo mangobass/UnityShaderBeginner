@@ -1,0 +1,5 @@
+
+*.csproj
+*.sln
+UnityShaderWork.sln.DotSettings.user
+*.suo

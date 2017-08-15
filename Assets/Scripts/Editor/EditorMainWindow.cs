@@ -1,33 +1,30 @@
-//=============================================================================
+ï»¿//=============================================================================
 /// Author : Peng Jiawei
+/// FileName : EditorMainWindow.cs
 //=============================================================================
-
-using UnityEditor;
 using UnityEngine;
+using System.Collections;
+using SelfEditorWindow;
 
-namespace SelfEditorWindow {
-	public class EditorMainWindow : EditorWindow
+namespace SelfEditorWindow
+{
+	public class EditorMainWindow : MyEditorWindowBase
 	{
-		enum E_EditorFuncType
+		protected static MyEditorWindowBase m_Instance = null;
+		public static MyEditorWindowBase Instance
 		{
-			ENUM_Editor_Func_Type_1 = 0,
-			ENUM_Editor_Func_Type_2,
-			ENUM_Editor_Func_Type_3,
-
-			ENUM_Editor_Func_Type_max
+			get { return m_Instance ?? new EditorMainWindow(); }
 		}
 
-		private int m_SelectIndex = 0;
-
-		private void OnGUI()
+		public EditorMainWindow()
 		{
-			OnMainEditorWindowGUI();
+			m_Instance = this;
 		}
 
-		private void OnMainEditorWindowGUI()
+		public override void OnEditorWindowGUI()
 		{
 			GUILayout.Label("Select function type:");
-			m_SelectIndex = GUILayout.SelectionGrid(0, new[] { "Func1", "Func2", "Func3" }, 1);
+			m_SelectIndex = GUILayout.SelectionGrid(m_SelectIndex, new[] { "Func1", "Func2", "Func3" }, 1);
 
 			GUILayout.BeginVertical();
 			GUILayout.Space(10);
@@ -53,40 +50,16 @@ namespace SelfEditorWindow {
 			GUILayout.EndHorizontal();
 		}
 
-		private void GotoFuncWindow()
-		{
-			switch (m_SelectIndex)
-			{
-				case (int)E_EditorFuncType.ENUM_Editor_Func_Type_1:
-					break;
-				case (int)E_EditorFuncType.ENUM_Editor_Func_Type_2:
-					break;
-				case (int)E_EditorFuncType.ENUM_Editor_Func_Type_3:
-					break;
-				default:
-					Debug.LogWarning("=== Select index is not matching. ===");
-					return;
-			}
-			Debug.Log("=== Select index is : " + m_SelectIndex + "  ===");
-		}
-
 
 		/// <summary>
-		/// µã»÷"Close"°´Å¥µÄ»Øµ÷
+		/// ç‚¹å‡»"Close"æŒ‰é’®çš„å›žè°ƒ
 		/// </summary>
 		private void CloseWindow()
 		{
-			Close();
+			EditorWindowManager.Instance.MainPanel.Close();
 		}
+
 	}
 }
-
-
-
-
-
-
-
-
 
 // EOF

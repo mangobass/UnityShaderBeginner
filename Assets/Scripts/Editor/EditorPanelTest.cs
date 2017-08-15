@@ -22,7 +22,8 @@ namespace SelfFunction
 		[MenuItem("MyTools/EditorMainWindow")]
 		public static void EditorMainWindow()
 		{
-			EditorMainWindow window = (EditorMainWindow)GetWindowWithRect(typeof(EditorMainWindow), new Rect(0, 0, 400, 500), true, "自定义编辑窗口");
+			EditorWindowMainView window = (EditorWindowMainView)GetWindowWithRect(typeof(EditorWindowMainView), new Rect(0, 0, 400, 500), true, "自定义编辑窗口");
+			EditorWindowManager.Instance.MainPanel = window;
 			window.Show();
 		}
 	}

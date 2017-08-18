@@ -2,23 +2,28 @@
 /// Author : Peng Jiawei
 /// FileName : EditorMainWindow.cs
 //=============================================================================
+
+using Common.ConstParams;
 using UnityEngine;
-using System.Collections;
-using SelfEditorWindow;
 
 namespace SelfEditorWindow
 {
 	public class EditorMainWindow : MyEditorWindowBase
 	{
+		#region Parameters Definition
 		protected static MyEditorWindowBase m_Instance = null;
 		public static MyEditorWindowBase Instance
 		{
 			get { return m_Instance ?? new EditorMainWindow(); }
 		}
 
-		public EditorMainWindow()
+		private int m_SelectIndex = 0;
+		#endregion Parameters Definition
+
+		private EditorMainWindow()
 		{
 			m_Instance = this;
+			EditorWindowType = E_EditorWindowType.ENUM_EDITOR_WINDOW_TYPE_MAIN;
 		}
 
 		public override void OnEditorWindowGUI()
@@ -30,19 +35,19 @@ namespace SelfEditorWindow
 			GUILayout.Space(10);
 			GUILayout.BeginHorizontal();
 			GUILayout.FlexibleSpace();
-			if (GUILayout.Button("Go", GUILayout.Width(50), GUILayout.Height(25)))
+			if (GUILayout.Button("Go", ConstParams.GetCommonBtnWidth(), ConstParams.GetCommonBtnHeight()))
 			{
 				GotoFuncWindow();
 			}
 			GUILayout.EndHorizontal();
 			GUILayout.EndVertical();
 
+			// 右下角显示关闭按钮
 			GUILayout.BeginHorizontal();
 			GUILayout.FlexibleSpace();
 			GUILayout.BeginVertical();
 			GUILayout.FlexibleSpace();
-
-			if (GUILayout.Button("Close", GUILayout.Width(50), GUILayout.Height(25)))
+			if (GUILayout.Button("Close", ConstParams.GetCommonBtnWidth(), ConstParams.GetCommonBtnHeight()))
 			{
 				CloseWindow();
 			}
@@ -50,15 +55,23 @@ namespace SelfEditorWindow
 			GUILayout.EndHorizontal();
 		}
 
-
-		/// <summary>
-		/// 点击"Close"按钮的回调
-		/// </summary>
-		private void CloseWindow()
+		private void GotoFuncWindow()
 		{
-			EditorWindowManager.Instance.MainPanel.Close();
+			switch (m_SelectIndex)
+			{
+				case (int)E_EditorWindowType.ENUM_EDITOR_WINDOW_TYPE_1:
+					EditorWindowManager.Instance.CurrentWindowType = E_EditorWindowType.ENUM_EDITOR_WINDOW_TYPE_1;
+					break;
+				case (int)E_EditorWindowType.ENUM_EDITOR_WINDOW_TYPE_2:
+					break;
+				case (int)E_EditorWindowType.ENUM_EDITOR_WINDOW_TYPE_3:
+					break;
+				default:
+					Debug.LogWarning("=== Select index is not matching. ===");
+					return;
+			}
+			Debug.Log("=== Select index is : " + m_SelectIndex + "  ===");
 		}
-
 	}
 }
 

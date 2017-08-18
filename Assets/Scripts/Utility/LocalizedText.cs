@@ -5,24 +5,27 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LocalizedText : MonoBehaviour
+namespace Common
 {
-	/// <summary>
-	/// Text content ID.
-	/// </summary>
-	[SerializeField] public string m_TextID = "";
-
-	private void Awake()
+	public class LocalizedText : MonoBehaviour
 	{
-		Text textObj = gameObject.GetComponent<Text>();
+		/// <summary>
+		/// Text content ID.
+		/// </summary>
+		[SerializeField] public string m_TextID = "";
 
-		// return if text content ID is null or empty.
-		if (string.IsNullOrEmpty(m_TextID)) return;
-
-		// return if Text object is null.
-		if (textObj != null)
+		private void Awake()
 		{
-			textObj.text = "Display text by TextId.";
+			Text textObj = gameObject.GetComponent<Text>();
+
+			// return if text content ID is null or empty.
+			if (string.IsNullOrEmpty(m_TextID)) return;
+
+			// return if Text object is null.
+			if (textObj != null)
+			{
+				textObj.text = "Display text by TextId.";
+			}
 		}
 	}
 }

@@ -1,7 +1,9 @@
 //=============================================================================
-/// Author : Peng Jiawei
+/// Desc: All editor windows' controller
+/// Auth: Peng Jiawei
 //=============================================================================
 
+using Common.ConstParams;
 using UnityEditor;
 using UnityEngine;
 
@@ -32,19 +34,25 @@ namespace SelfEditorWindow
 					break;
 			}
 
+			if (m_CurrentWindow == null)
+			{
+				// œ‘ æπÿ±’∞¥≈•
+				GUILayout.BeginHorizontal();
+				GUILayout.FlexibleSpace();
+				GUILayout.BeginVertical();
+				GUILayout.FlexibleSpace();
+				if (GUILayout.Button("Close", ConstParams.GetCommonBtnWidth(), ConstParams.GetCommonBtnHeight()))
+				{
+					Close();
+				}
+				GUILayout.EndVertical();
+				GUILayout.EndHorizontal();
+				return;
+			}
+
 			m_CurrentWindow.OnEditorWindowGUI();
 		}
-
-
 	}
 }
-
-
-
-
-
-
-
-
 
 // EOF

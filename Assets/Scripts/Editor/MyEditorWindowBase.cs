@@ -1,8 +1,8 @@
 ﻿//=============================================================================
-/// Author : Peng Jiawei
+/// Desc: Editor window base class
+/// Auth: Peng Jiawei
 //=============================================================================
 
-using UnityEditor;
 using UnityEngine;
 
 namespace SelfEditorWindow
@@ -11,28 +11,17 @@ namespace SelfEditorWindow
 	{
 		public E_EditorWindowType EditorWindowType { get; set; }
 
-		protected int m_SelectIndex = 0;
-		protected void GotoFuncWindow()
-		{
-			switch (m_SelectIndex)
-			{
-				case (int)E_EditorWindowType.ENUM_EDITOR_WINDOW_TYPE_1:
-					EditorWindowManager.Instance.CurrentWindowType = E_EditorWindowType.ENUM_EDITOR_WINDOW_TYPE_1;
-					break;
-				case (int)E_EditorWindowType.ENUM_EDITOR_WINDOW_TYPE_2:
-					break;
-				case (int)E_EditorWindowType.ENUM_EDITOR_WINDOW_TYPE_3:
-					break;
-				default:
-					Debug.LogWarning("=== Select index is not matching. ===");
-					return;
-			}
-			Debug.Log("=== Select index is : " + m_SelectIndex + "  ===");
-		}
-
 		protected void BackWindow()
 		{
 			EditorWindowManager.Instance.CurrentWindowType = E_EditorWindowType.ENUM_EDITOR_WINDOW_TYPE_MAIN;
+		}
+
+		/// <summary>
+		/// 点击"Close"按钮的回调
+		/// </summary>
+		protected void CloseWindow()
+		{
+			EditorWindowManager.Instance.MainPanel.Close();
 		}
 
 		#region abstract functions

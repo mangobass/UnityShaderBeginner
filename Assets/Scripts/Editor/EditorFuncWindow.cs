@@ -5,7 +5,6 @@
 using UnityEngine;
 using System.Collections;
 using Common;
-using Common.ConstParams;
 using UnityEditor;
 using UnityEngine.UI;
 

@@ -3,7 +3,7 @@
 /// FileName : EditorMainWindow.cs
 //=============================================================================
 
-using Common.ConstParams;
+using Common;
 using UnityEngine;
 
 namespace SelfEditorWindow

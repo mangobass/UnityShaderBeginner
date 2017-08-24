@@ -4,7 +4,7 @@
 
 using UnityEngine;
 
-namespace Common.ConstParams
+namespace Common
 {
 	public class ConstParams
 	{
@@ -20,6 +20,8 @@ namespace Common.ConstParams
 		{
 			return GUILayout.Height(CommonButtonHeight);
 		}
+
+		public static string UIPrefabPath = "Assets/Prefabs/GUI/";
 	}
 }
 

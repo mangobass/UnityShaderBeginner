@@ -3,7 +3,7 @@
 /// Auth: Peng Jiawei
 //=============================================================================
 
-using Common.ConstParams;
+using Common;
 using UnityEditor;
 using UnityEngine;
 
